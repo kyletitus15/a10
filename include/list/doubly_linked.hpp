@@ -38,15 +38,19 @@ class DoublyLinkedList {
             return sz == 0;
         }
         T& front() {
+            if (empty()) throw std::runtime_error("List is empty");
             return header->next->elem;
         }
         const T& front() const {
+            if (empty()) throw std::runtime_error("List is empty");
             return header->next->elem;
         }
         T& back() {
+            if (empty()) throw std::runtime_error("List is empty");
             return trailer->prev->elem;
         }
         const T& back() const {
+            if (empty()) throw std::runtime_error("List is empty");
             return trailer->prev->elem;
         }
     private:
@@ -74,9 +78,11 @@ class DoublyLinkedList {
             insert_before(elem, trailer);
         }
         void pop_front() {
+            if (empty()) throw std::runtime_error("List is empty");
             erase(header->next);
         }
         void pop_back() {
+            if (empty()) throw std::runtime_error("List is empty");
             erase(trailer->prev);
         }
         void concatenate(DoublyLinkedList& M) {

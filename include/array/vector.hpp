@@ -1,6 +1,4 @@
 //vector.hpp
-#ifndef VECTOR_HPP
-#define VECTOR_HPP
 #pragma once
 
 #include <algorithm>  //for std::max
@@ -64,21 +62,25 @@ public:
     
     // first element
     const T& front() const {
+        if (empty()) throw std::underflow_error("Queue is empty");
         return data[0];
     }
 
     // first element
     T& front() {
+        if (empty()) throw std::underflow_error("Queue is empty");
         return data[0];
     }
     
     // last element
     const T& back() const {
+        if (empty()) throw std::underflow_error("Queue is empty");
         return data[sz - 1];
     }
 
     // last element
     T& back() {
+        if (empty()) throw std::underflow_error("Queue is empty");
         return data[sz - 1];
     }
     
@@ -146,6 +148,7 @@ public:
             data[k - 1] = std::move(data[k]);
         }
         sz--;
+        shrink();
     }
     
     // explicitly reduce the cap to sz and keep at least 1 slot
@@ -317,6 +320,5 @@ public:
     
 
 }; //end class Vector
-}//end namespace dsa
+}//end namespace dsac::array
 
-#endif
